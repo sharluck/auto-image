@@ -1,0 +1,91 @@
+
+<script>
+function showimg() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+     document.getElementById("psdiv").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "http://<%= msg %>:2346/ps", true);
+  xhttp.send();
+}
+
+
+
+
+
+function sendimgdata(){
+
+ let cntnrname= document.getElementById("cname").value;
+let bsimgname= document.getElementById("osname").value;
+ var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+     document.getElementById("iddiv").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "http://<%= msg %>:2346/imgid?cname="+cntnrname+"&"+"osname="+bsimgname , true);
+  xhttp.send();
+
+
+}
+</script>
+
+<!---- this is image creating division ---->
+<div id="imgcrt" name="imgcrt">
+       <form action="/imgid"  method="get">	
+	enter os name : <input type="text" name= "cname" id="cname" />
+	<label for="baseos">choose base image: </label>
+
+	<select name="osname" id="osname">
+  	<option value="centos">CENTOS</option>
+  	<option value="ubuntu">UBUNTU</option>
+	</select>
+	</form>
+  </div>
+<button onclick= "sendimgdata()">createimage</button>
+<div id ="iddiv" name= "iddiv">
+this id div
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<button onclick="showimg()">showimages</button>
+<div id="psdiv"  style= "border:3px solid red "name="psdiv">
+
+   this is ps div
+ </div>
+
+
+
+
+
+
+<<iframe src="https://<%= msg %>:2323" title="W3Schools Free Online Web Tutorials"></iframe>>
+
+
+
+
+<form action="/uploadfile" method="post" enctype="multipart/form-data">
+    <input type= "file" name= "image" />
+     <input type="submit" value= "send" onclick="alert('uploaded')"/>
+  </form>
+
+
+
+
+
+
+<!--------- image pushing into the docker hub------------>
+
+
+

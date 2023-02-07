@@ -1,0 +1,20 @@
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 ) {
+     document.getElementById("homediv").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "http://<%= msg %>:2346/cntimage", true);
+  xhttp.send();
+}
+</script>
+
+<form action="/login" method= "post" id= "homediv">
+     enter maild:<input type ="text" name= "lemail" id="lemail" />
+     enter passeword:<input type ="password" name= "lpassword" id="lpassword" />
+     <input type ="submit"   value="submit" />
+        </form>
+<script> alert("registered successfully") </script>
+<button onclick = "loadDoc()">clickhere</button>
